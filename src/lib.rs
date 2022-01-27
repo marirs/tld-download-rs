@@ -18,6 +18,15 @@ const PUBLIC_SUFFIX_LIST_URLS: &[&str] = &[
 const PUBLIC_SUFFIX_RE: &str = r"^(?P<suffix>[.*!]*\w[\S]*)";
 
 pub fn download(include_private_domains: bool) -> Result<Vec<String>> {
+    //! Downloads the public tld suffixes
+    //!
+    //! ## Example Usage
+    //! ```rust
+    //! use tld_download::download;
+    //!
+    //! let suffixes = tld_download::download(false);
+    //! assert!(suffixes.is_ok())
+    //! ```
     let rt = Builder::new_current_thread().enable_all().build()?;
     let reg = Regex::new(PUBLIC_SUFFIX_RE)?;
     let x = Arc::new(Mutex::new(vec![]));
