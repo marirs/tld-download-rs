@@ -1,6 +1,6 @@
 [package]
 name = "tld_download"
-version = "0.0.1"
+version = "0.0.2"
 authors = ["Marirs <marirs@gmail.com>"]
 description = "Download public & private gTLC & ccTLD"
 keywords = ["tld", "suffixes"]
@@ -12,7 +12,7 @@ edition = "2021"
 futures = "0.3.19"
 idna = "0.2.3"
 regex = "1.5.4"
-reqwest = "0.11.9"
+reqwest = { version = "0.11.9", features = ["native-tls-vendored"] }
 thiserror = "1.0.30"
 tokio = { version = "1", features = ["rt"] }
 
