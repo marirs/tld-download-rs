@@ -14,13 +14,13 @@ Downloads tld suffixes to a file
 You can include this in your Cargo.toml file:
 ```toml
 [dependencies]
-tld_download = "0.1.0"
+tld_download = "0.1.1"
 ```
 
 If you want to use it with the inbuilt public suffix db; then:
 ```toml
 [dependencies]
-tld_download = { version = "0.1.0", features = ["with-db"] }
+tld_download = { version = "0.1.1", features = ["with-db"] }
 ```
 
 and then
