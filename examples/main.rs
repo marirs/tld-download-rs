@@ -15,7 +15,7 @@ struct CliOpts {
 
 fn main() {
     let cli = CliOpts::parse();
-    match tld_download::download(cli.include_private_domains) {
+    match tld_download::from_publicsuffix(cli.include_private_domains) {
         Ok(r) => {
             let mut file = File::create(&cli.output_file).expect("couldn't create file");
             let r = r.join("\n");

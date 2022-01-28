@@ -8,5 +8,29 @@ Downloads tld suffixes to a file
 
 - Rust 1.56+
 
+## Usage
+
+You can include this in your Cargo.toml file:
+```toml
+[dependencies]
+tld_download = "0.1.0"
+```
+
+If you want to use it with the inbuilt public suffix db; then:
+```toml
+[dependencies]
+tld_download = { version = "0.1.0", features = ["with-db"] }
+```
+
+and then
+
+```rust
+use tld_download::from_db;
+
+fn main () {
+    let db = from_db();
+    assert!(!db.is_empty());
+}
+```
 ---
 License: MIT

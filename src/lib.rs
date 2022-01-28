@@ -17,14 +17,41 @@ const PUBLIC_SUFFIX_LIST_URLS: &[&str] = &[
 
 const PUBLIC_SUFFIX_RE: &str = r"^(?P<suffix>[.*!]*\w[\S]*)";
 
-pub fn download(include_private_domains: bool) -> Result<Vec<String>> {
-    //! Downloads the public tld suffixes
+#[cfg(feature = "with-db")]
+pub fn from_db() -> Vec<String> {
+    //! Gets the public tld suffixes list from the Locally stored DB list cache
+    //! This DB list does not include the private domains list & might get
+    //! updated irregularly
     //!
     //! ## Example Usage
     //! ```rust
-    //! use tld_download::download;
+    //! use tld_download::from_db;
     //!
-    //! let suffixes = tld_download::download(false);
+    //! let suffixes = tld_download::from_db();
+    //! assert!(!suffixes.is_empty())
+    //! ```
+    include_str!("../assets/suffix.dat")
+        .split('\n')
+        .into_iter()
+        .map(|x| {
+            if x.starts_with("*.") {
+                x.replace("*.", ".")
+            } else {
+                x.to_string()
+            }
+        })
+        .collect()
+}
+
+pub fn from_publicsuffix(include_private_domains: bool) -> Result<Vec<String>> {
+    //! Downloads the public tld suffixes list from the internet websites
+    //! `publicsuffix.org` & `github.com/publicsuffix list`
+    //!
+    //! ## Example Usage
+    //! ```rust
+    //! use tld_download::from_publicsuffix;
+    //!
+    //! let suffixes = tld_download::from_publicsuffix(false);
     //! assert!(suffixes.is_ok())
     //! ```
     let rt = Builder::new_current_thread().enable_all().build()?;
@@ -61,6 +88,11 @@ pub fn download(include_private_domains: bool) -> Result<Vec<String>> {
                     let r = match domain_to_ascii(m.as_str()) {
                         Ok(caps) => caps,
                         Err(_) => m.as_str().to_string(),
+                    };
+                    let r = if r.starts_with("*.") {
+                        r.replace("*.", ".")
+                    } else {
+                        r
                     };
                     res.insert(r);
                 }

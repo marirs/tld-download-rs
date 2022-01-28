@@ -1,23 +1,30 @@
 [package]
 name = "tld_download"
-version = "0.0.2"
+version = "0.1.0"
 authors = ["Marirs <marirs@gmail.com>"]
-description = "Download public & private gTLC & ccTLD"
+description = "Download public & private gTLD & ccTLD"
 keywords = ["tld", "suffixes"]
 readme = "README.md"
 license-file = "LICENSE"
+include = ["src", "assets"]
 edition = "2021"
 
 [dependencies]
 futures = "0.3.19"
 idna = "0.2.3"
 regex = "1.5.4"
-reqwest = { version = "0.11.9", features = ["native-tls-vendored"] }
+reqwest = { version = "0.11.9", features = ["native-tls-vendored", "brotli", "gzip"] }
 thiserror = "1.0.30"
 tokio = { version = "1", features = ["rt"] }
 
 [dev-dependencies]
 clap = { version = "3.0.13", features = ["cargo", "derive"] }
+
+[features]
+with-db = []
+
+[package.metadata.docs.rs]
+all-features = true
 
 [lib]
 name = "tld_download"
@@ -26,6 +33,11 @@ path = "src/lib.rs"
 [[example]]
 name = "tld_download"
 path = "examples/main.rs"
+
+[[example]]
+name = "tld_download_with_local_db"
+path = "examples/main_with_db.rs"
+required-features = ["with-db"]
 
 [profile.dev]
 opt-level = 3
