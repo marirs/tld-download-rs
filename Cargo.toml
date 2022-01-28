@@ -1,12 +1,14 @@
 [package]
 name = "tld_download"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Marirs <marirs@gmail.com>"]
 description = "Download public & private gTLD & ccTLD"
 keywords = ["tld", "suffixes"]
 readme = "README.md"
 license-file = "LICENSE"
 include = ["src", "assets"]
+repository = "https://github.com/marirs/tld-download-rs"
+homepage = "https://github.com/marirs/tld-download-rs"
 edition = "2021"
 
 [dependencies]
