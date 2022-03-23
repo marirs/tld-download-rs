@@ -37,7 +37,7 @@ pub fn from_db() -> Vec<String> {
             if x.starts_with("*.") {
                 x.replace("*.", ".")
             } else {
-                x.to_string()
+                format!(".{}", x)
             }
         })
         .collect()
