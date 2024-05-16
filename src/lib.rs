@@ -67,8 +67,8 @@ pub fn from_publicsuffix(include_private_domains: bool) -> Result<Vec<String>> {
     let x = x
         .lock()?
         .to_vec()
-        .into_iter()
-        .map(|v| String::from_utf8_lossy(&*v).to_string())
+        .iter()
+        .map(|v| String::from_utf8_lossy(v).to_string())
         .collect::<Vec<String>>();
 
     for buf in x {

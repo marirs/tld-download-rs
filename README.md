@@ -7,20 +7,20 @@ Downloads tld suffixes to a file
 
 #### Requirements
 
-- Rust 1.56+
+- Rust 1.75+
 
 ## Usage
 
 You can include this in your Cargo.toml file:
 ```toml
 [dependencies]
-tld_download = "0.1.1"
+tld_download = "0.1.3"
 ```
 
 If you want to use it with the inbuilt public suffix db; then:
 ```toml
 [dependencies]
-tld_download = { version = "0.1.1", features = ["with-db"] }
+tld_download = { version = "0.1.3", features = ["with-db"] }
 ```
 
 and then
