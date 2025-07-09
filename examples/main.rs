@@ -9,7 +9,7 @@ struct CliOpts {
     include_private_domains: bool,
 
     /// Writes to a output file
-    #[clap(short = 'f', long, parse(from_os_str), value_name = "FILE")]
+    #[clap(short = 'f', long, value_name = "FILE")]
     output_file: PathBuf,
 }
 
@@ -27,7 +27,7 @@ fn main() {
             );
         }
         Err(e) => {
-            println!("{:?}", e)
+            println!("{e:?}")
         }
     }
 }

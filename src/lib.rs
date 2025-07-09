@@ -32,12 +32,11 @@ pub fn from_db() -> Vec<String> {
     //! ```
     include_str!("../assets/suffix.dat")
         .split('\n')
-        .into_iter()
         .map(|x| {
             if x.starts_with("*.") {
                 x.replace("*.", ".")
             } else {
-                format!(".{}", x)
+                format!(".{x}")
             }
         })
         .collect()
