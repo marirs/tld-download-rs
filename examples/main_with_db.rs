@@ -5,7 +5,7 @@ use std::{fs::File, io::Write, path::PathBuf};
 #[clap(author, version, about, long_about = None)]
 struct CliOpts {
     /// Writes to a output file
-    #[clap(short = 'f', long, parse(from_os_str), value_name = "FILE")]
+    #[clap(short = 'f', long, value_name = "FILE")]
     output_file: PathBuf,
 }
 
