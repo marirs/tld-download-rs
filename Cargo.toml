@@ -1,6 +1,6 @@
 [package]
 name = "tld_download"
-version = "0.1.3"
+version = "0.1.4"
 authors = ["Marirs <marirs@gmail.com>"]
 description = "Download public & private gTLD & ccTLD"
 keywords = ["tld", "suffixes"]
